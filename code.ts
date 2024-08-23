@@ -36,7 +36,10 @@ const cute_colors = [{
 }]
 
 // get random cute color
-const random_color = cute_colors[Math.floor(Math.random() * cute_colors.length)];
+// const random_color = cute_colors[Math.floor(Math.random() * cute_colors.length)];
+
+const random_color = {r:0.8980392156862745, g:0.9450980392156862, b:0.984313725490196};
+console.log("printing current color", random_color);
 // get random cute font
 const cute_font = cute_fonts[Math.floor(Math.random() * cute_fonts.length)];
 
@@ -50,6 +53,7 @@ async function changeText(font: FontName, fontColor: RGB) {
       (textNode as TextNode).fontName = font;
       // change text color to a cute color
       (textNode as TextNode).fills = [{type: 'SOLID', color: fontColor}];
+      console.log("printing text color", ((textNode as TextNode).fills as SolidPaint[])[0].color);
     }
 
       figma.closePlugin();
@@ -70,6 +74,7 @@ async function changeShapeColor(shapeColor: RGB) {
   for (const shape of shapes) {
     (shape as RectangleNode).fills = [{type: 'SOLID', color: shapeColor}];
     (shape as RectangleNode).cornerRadius = 20;
+    console.log("printing shape color", ((shape as RectangleNode).fills as SolidPaint[])[0].color);
   }
 
 }
